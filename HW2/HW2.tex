@@ -1,0 +1,321 @@
+\documentclass{article}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% Document information %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\name}{Nick Palumbo}
+\newcommand{\email}{\href{mailto:npalumbo@umail.iu.edu?subject=H335 HW2:}{npalumbo@umail.iu.edu}}
+\newcommand{\assigned}{2-12-2016}
+\newcommand{\due}{2-23-2016}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% Document information %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\thecourse}{H\,335: Computer Structures}
+\newcommand{\theterm}{Spring~2016}
+\newcommand{\theassignment}{2}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Packages %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{fullpage,url,xcolor,amsmath,amssymb,mathtools,tikz,changepage}
+\usepackage{newtxtext,newtxmath,setspace,subdepth}
+\usepackage[normalem]{ulem}
+\usepackage[colorlinks,urlcolor=blue!50!black]{hyperref}
+\usepackage{enumitem}
+\usepackage{cancel}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% Main content starts here %%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+	\begin{center}
+	    {\LARGE \thecourse}\\[3ex]
+	    {\Large \theterm\ -- Homework~\theassignment}\\[3ex]
+	    \begin{tabular}{llll}
+	        \textbf{Name:}&\name&\qquad\qquad\textbf{Email:}&\email\\[0.75ex]
+	        \textbf{Assigned:}&\assigned&\qquad\qquad\textbf{Due:}&\due\\[0.75ex]
+	    \end{tabular}
+	\end{center}
+
+	\begin{enumerate}
+		\item[1. ] % Exercise 4.1 Largest radix-r number % 
+		\textbf{Prove, using induction, that for radix-r, the largest number that can be represented with $N$ digits is $r^N - 1$:} \\
+
+			$(d_{N-1},...,d_0)_r=\sum_{i=0}^{N-1}d_i\times r^i,d_i\in\{0..r-1\}$
+
+			\textbf{Base case:} $N = 1$ \\
+
+			$\sum_{i=0}^{N-1}d_i\times r^i = r^N - 1$ \\
+
+			$\sum_{i=0}^{0}0\times r^0 = r^0 - 1$ \\
+
+			$0 = 0$ \\
+
+			\textbf{Inductive hypothesis:} $N = k$ \\
+
+			$\sum_{i=0}^{k-1}d_i\times r^i = r^k - 1$ \\
+
+			\textbf{Inductive step:} $N = k + 1$ \\
+
+			$\sum_{i=0}^{k}d_i\times r^i = r^{k + 1} - 1$ \\
+
+			$(\sum_{i=0}^{1}d_i\times r^i) + (\sum_{i=0}^{k-1}d_i\times r^i) = r^{k + 1} - 1$ \\
+
+			$(\sum_{i=0}^{1}d_i\times r^i) + (r^k - 1) = r^{k + 1} - 1$ \\
+
+			$(\sum_{i=0}^{1}d_i\times r^i) + r^k = r^{k + 1}$ \\
+
+			$(\sum_{i=0}^{1}d_i\times r^i) = r^{k + 1} - r^k$ \\
+
+			$(\sum_{i=0}^{1}d_i\times r^i) = (r - 1)r^k$ \\
+			
+
+		\item[2.] % Exercise 4.2 Carry bits %
+			\textbf{Prove that for radix-r addition, the carry bits are always 0 or 1:} \\
+			The carry bit for any size radix will always be either 0 or 1. This is because when adding radix number we simply add the two first digits and move on. A single digit number when aded to another single digit number will never give a number greater than or equal to 20. Therefore, every carry can only be 1 or zero to represent carrying a ten or a radix-r where r is the given radix system. \\
+
+			\begin{center}
+				$ 9 + 9 = 18$ \\
+				$ 18 < 20 \therefore$ carry would only be a 1.
+			\end{center}
+
+		\label{3}\item[3.] % Exercise 4.3 Complement number range %
+		\textbf{Given the formal definition, derive the minimum and maximum two's complement numbers that can be represented in $N$ bits:} \\
+
+			$(b_N-1,...,b_0)_{\bar{2}} = -b_{N-1} \times 2^{N-1} + \sum_{i=0}^{N-2}b_i \times 2^i$ \\
+
+			\begin{center}
+				When finding the largest two's complement number given N bits: \fbox{$2^{N-1} - 1$} \\
+				$2^{8-1} - 1 = 2^7 - 1 = 128 - 1 = +127$ \\
+				\fbox{largest = $+127 = 0111\ 1111$} \\	
+
+				When finding the smallest two's complement number given N bits: \fbox{$-2^{N-1}$} \\
+				$-2^{8-1} = -2^7 = -128$ \\
+				\fbox{smallest = $-128 = 1000\ 0000$} \\
+			\end{center}
+		
+		\item[4.] % Exercise 4.4 2's complement operation %
+		\textbf{For a number $B$ with magnitute less than $2^{N - 2}$, show that if $B$ is represented by 2's complement number with $N$ bits $b_{N-1}..b_0$ then $-(b_N-1,...,b_0)_{\bar{2}} = (\overline{b_N-1,...,b_0})_{\bar{2}}+1$ } \\
+
+			$-(b_N-1,...,b_0)_{\bar{2}} = (\overline{b_N-1,...,b_0})_{\bar{2}}+1$ \\
+
+			$-(0010)_{\bar{2}} = (\overline{0010})_{\bar{2}}+1$ \\
+
+			$lhs = -(0111)_{\bar{2}} = (1111)_{\bar{2}}$ \\
+
+			$rhs = (\overline{0111})_{\bar{2}}+1 = (1000)_{\bar{2}}+1 = (1001)_{\bar{2}}$ \\
+
+			$lhs = rhs$ \\
+		
+		\item[5.] % 4.5 Sign extension % % Using techniques from the book, do the following %
+			\textbf{Prove the ``sign-extension" is value preserving:} \\ 
+
+			Sign-extension is value preserving because when using the two's complement, the most significant bit is the value needed to show if a value is positive or negative. That is why the greatest value cannot be used with an N-bit number. When using two's complement, the gratest value in an N-bit number must be $(r^N - 1)$ because if we used the most significant bit as a vlue instead of a marker for positive or negative, we would not be able to know if the value was positive or negative. This was shown in question 3.
+		
+		\item[6.] % Using the technique presented in section 4.1 %
+		\textbf{Convert the following decimal numbers to binary: } \\
+			
+			\begin{enumerate}
+				\item \textbf{107 = 110 1011} \\
+
+					\begin{center}
+					\begin{tabular}{lrrrrrrr}
+						\hline
+						\multicolumn{8}{c}{Repeated Division (mod 2)}\\\hline
+						Quotients  & 107 & 53 & 26 & 13 & 6 & 3 & 1\\
+						Remainders &   1 &  1 &  0 &  1 & 0 & 1 & 1\\\hline		
+					\end{tabular}
+
+					$(107)_{10} = (1101011)_2$
+					\end{center}
+				
+				\item \textbf{2312 = 1001 0000 1000} \\
+
+					\begin{center}
+					\begin{tabular}{lrrrrrrrrrrrr}
+						\hline
+						\multicolumn{13}{c}{Repeated Division (mod 2)}\\\hline
+						Quotients  & 2312 & 1156 & 578 & 289 & 144 & 72 & 36 & 18 & 9 & 4 & 2 & 1\\
+						Remainders &    0 &    0 &   0 &   1 &   0 &  0 &  0 &  0 & 1 & 0 & 0 & 1\\\hline		
+					\end{tabular}
+
+					$(2312)_{10} = (100100001000)_2$
+					\end{center}
+				
+				\item \textbf{31333 = 111 1010 0110 0101} \\
+
+					\begin{center}
+					\begin{tabular}{lrrrrrrrrrrrrrrr}
+						\hline
+						\multicolumn{16}{c}{Repeated Division (mod 2)}\\\hline
+						Quotients  & 31333 & 15666 & 7833 & 3916 & 1958 & 979 & 489 & 244 & 122 & 61 & 30 & 15 & 7 & 3 & 1\\
+						Remainders &     1 &     0 &    1 &    0 &    0 &   1 &   1 &   0 &   0 &  1 &  0 &  1 & 1 & 1 & 1\\\hline		
+					\end{tabular}
+
+					$(31333)_{10} = (111101001100101)_2$
+					\end{center}
+				
+				\item \textbf{97 = 110 0001} \\
+
+					\begin{center}
+					\begin{tabular}{lrrrrrrr}
+						\hline
+						\multicolumn{8}{c}{Repeated Division (mod 2)}\\\hline
+						Quotients  & 97 & 48 & 24 & 12 & 6 & 3 & 1\\
+						Remainders &  1 &  0 &  0 &  0 & 0 & 1 & 1\\\hline		
+					\end{tabular}
+
+					$(97)_{10} = (1100001)_2$
+					\end{center}
+			
+			\end{enumerate}
+		
+		\item[7.] % Using the technique presented in section 4.2 %
+		\textbf{Perform the following subtraction operations using complements: } \\
+
+			\begin{enumerate}
+				\item \textbf{103 - 92 = 11} \\
+
+					\begin{center}
+
+					\fbox{\begin{tabular}{c}
+						$0\colon (10 - 1) - 0 = 9 - 0 = \textcolor{red}{9}$ \\
+						$9\colon (10 - 1) - 9 = 9 - 9 = \textcolor{red}{0}$ \\
+						$2\colon (10 - 1) - 2 = 9 - 2 = \textcolor{red}{7}$ \\
+
+					\end{tabular}}
+					\quad
+					\begin{tabular}{cccc}
+					    \cancel{\fbox{1}}   & \fbox{0} 	 & \fbox{1} &   \\
+						  					& 1 		 &        0 & 3 \\
+						  					& \textcolor{red}{9} & \textcolor{red}{0} & \textcolor{red}{7} \\
+						+ 					&   		 &          & 1 \\\hline
+						  					&   		 &        1 & 1  \\
+					\end{tabular}
+					\end{center}
+
+				\item \textbf{1027 - 11 = 1016} \\
+
+					\begin{center}
+
+					\fbox{\begin{tabular}{c}
+						$0\colon (10 - 1) - 0 = 9 - 0 = \textcolor{red}{9}$ \\
+						$0\colon (10 - 1) - 0 = 9 - 0 = \textcolor{red}{9}$ \\
+						$1\colon (10 - 1) - 1 = 9 - 1 = \textcolor{red}{8}$ \\
+						$1\colon (10 - 1) - 1 = 9 - 1 = \textcolor{red}{8}$ \\
+					\end{tabular}}
+					\quad
+					\begin{tabular}{ccccc}
+					    \cancel{\fbox{1}} & \fbox{1} & \fbox{1} & \fbox{1} &   \\
+						  				  & 1 		 & 0 		& 2        & 7 \\
+						  				  & \textcolor{red}{9} & \textcolor{red}{9} & \textcolor{red}{8} & \textcolor{red}{8} \\
+						+ 				  &   		 &   		&   	   & 1 \\\hline
+						  				  & 1 		 & 0 		& 1 	   & 6  \\
+					\end{tabular}
+					\end{center}
+				
+				\item \textbf{129 - 33 = 96} \\
+
+					\begin{center}
+
+					\fbox{\begin{tabular}{c}
+						$0\colon (10 - 1) - 0 = 9 - 0 = \textcolor{red}{9}$ \\
+						$3\colon (10 - 1) - 3 = 9 - 3 = \textcolor{red}{6}$ \\
+						$3\colon (10 - 1) - 3 = 9 - 3 = \textcolor{red}{6}$ \\
+					\end{tabular}}
+					\quad
+					\begin{tabular}{cccc}
+					    \cancel{\fbox{1}} & \fbox{0} & \fbox{1} &   \\
+						  		 		  & 1 		 &        2 & 9 \\
+						  		 		  & \textcolor{red}{9} & \textcolor{red}{6} & \textcolor{red}{6} \\
+						+ 		 		  &   		 &          & 1 \\\hline
+						  		 		  &   		 &        9 & 6  \\
+					\end{tabular}
+					\end{center}
+				
+				\item \textbf{2222 - 222 = 2000} \\
+
+					\begin{center}
+
+					\fbox{\begin{tabular}{c}
+						$0\colon (10 - 1) - 0 = 9 - 0 = \textcolor{red}{9}$ \\
+						$2\colon (10 - 1) - 2 = 9 - 2 = \textcolor{red}{7}$ \\
+						$2\colon (10 - 1) - 2 = 9 - 2 = \textcolor{red}{7}$ \\
+						$2\colon (10 - 1) - 2 = 9 - 2 = \textcolor{red}{7}$ \\
+					\end{tabular}}
+					\quad
+					\begin{tabular}{ccccc}
+					    \cancel{\fbox{1}} & \fbox{1} & \fbox{1} & \fbox{1} &   \\
+						  				  & 2 		 & 2 		 & 2        & 2 \\
+						  				  & \textcolor{red}{9} & \textcolor{red}{7} & \textcolor{red}{7} & \textcolor{red}{7} \\
+						+ 				  &   		 &	   		 &   		& 1 \\\hline
+						  				  & 2 		 & 0 		 & 0 		& 0  \\
+					\end{tabular}
+					\end{center}
+			
+			\end{enumerate}
+		
+		\item[8.] \textbf{Convert the following decimal numbers to 8-bit two's complement (show your work)} \\
+
+			\begin{enumerate}
+				\item \textbf{-91 = 1101 1011}
+					\begin{center}
+					\begin{tabular}{lrrrrrrr}
+						\hline
+						\multicolumn{8}{c}{Repeated Division (mod 2)}\\\hline
+						Quotients  & 91 & 45 & 22 & 11 & 5 & 2 & 1\\
+						Remainders &  1 &  1 &  0 &  1 & 1 & 0 & 1\\\hline		
+					\end{tabular}
+
+					$(-91)_{10} = (1101\ 1011)_2$ \\
+					\end{center}
+					The most significant bit will be the bit to show if the number is positive or negative. Since the decimal number will be an 8-bit two's complement, the most significant bit will be in the last position on the left and for -91 the most significant bit will be 1 to represent a negative. \\
+
+				\item \textbf{-96 = 1110 0000}
+					\begin{center}
+					\begin{tabular}{lrrrrrrr}
+						\hline
+						\multicolumn{8}{c}{Repeated Division (mod 2)}\\\hline
+						Quotients  & 96 & 48 & 24 & 12 & 6 & 3 & 1\\
+						Remainders &  0 &  0 &  0 &  0 & 0 & 1 & 1\\\hline		
+					\end{tabular}
+
+					$(-96)_{10} = (1110\ 0000)_2$ \\
+					\end{center}
+
+				\item \textbf{-126 = 1111 1110}
+					\begin{center}
+					\begin{tabular}{lrrrrrrr}
+						\hline
+						\multicolumn{8}{c}{Repeated Division (mod 2)}\\\hline
+						Quotients  & 126 & 63 & 31 & 15 & 7 & 3 & 1\\
+						Remainders &   0 &  1 &  1 &  1 & 1 & 1 & 1\\\hline		
+					\end{tabular}
+
+					$(-126)_{10} = (1111\ 1110)_2$
+					\end{center}
+
+				\item \textbf{101 = 0110 0101}
+					\begin{center}
+					\begin{tabular}{lrrrrrrr}
+						\hline
+						\multicolumn{8}{c}{Repeated Division (mod 2)}\\\hline
+						Quotients  & 101 & 50 & 25 & 12 & 6 & 3 & 1\\
+						Remainders &   1 &  0 &  1 &  0 & 0 & 1 & 1\\\hline		
+					\end{tabular}
+
+					$(101)_{10} = (0110\ 0101)_2$ \\
+					\end{center}
+					Now that the decimal is positive, the most significant bit will be a 0. 1 is for negative and 0 is for positive. \\
+
+				\item \textbf{78 = 0100 1110}
+					\begin{center}
+					\begin{tabular}{lrrrrrrr}
+						\hline
+						\multicolumn{8}{c}{Repeated Division (mod 2)}\\\hline
+						Quotients  & 78 & 39 & 19 & 9 & 4 & 2 & 1\\
+						Remainders &  0 &  1 &  1 & 1 & 0 & 0 & 1\\\hline		
+					\end{tabular}
+
+					$(78)_{10} = (0100\ 1110)_2$ \\
+					\end{center}
+
+			\end{enumerate}
+	
+	\end{enumerate}
+
+\end{document}

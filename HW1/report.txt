@@ -1,0 +1,22 @@
+Nick Palumbo
+Homework 1
+February 8, 2016
+
+Address and size of global variable state: 
+address:00012fe8 size:00000004
+
+Address and size of global variable state_counter.
+address:00012fec size:00000004
+
+Starting address and size of function stop_light().
+address:00008afc size:00000090
+
+Starting address and size of function inc().
+address:00008af8 size:00000000
+
+Largest function in the executable HW1.elf.
+_malloc_r
+
+Overall size of the executable HW1.elf in bytes.
+text	data	 bss	dec     hex	filename
+9656	2404     268  12328    3028	HW1.elf

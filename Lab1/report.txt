@@ -1,0 +1,6 @@
+Name: Nick Palumbo 
+Username: npalumbo
+
+For this first lab assignment I made a "hello world" program that printed "Hello, world." every 3 seconds. However, the program also makes a new directory called "HelloWorld" every 3 seconds too. I wanted to make a new directory every 3 seconds and noticed that with "mkdir" I would have to somehow change the name of the directory so that "mkdir" would make a new directory. If the name for each new directory stayed the same then "mkdir" would ignore the request because the directory already existed. The simplest way in my opinion was to append a number on the end that was increasing. I researched online on how to convert an integer into a string and came across "sprintf". This allowed me to take the integer and convert it into a string that would then be appended onto the new directory name. Each new directory would then be created in the directory that the c program was run in.
+
+I learned to use "sprintf" which allowed me to convert an integer into a string. I leanred after trial and error that trying to append a character array to an integer was not going to work. 

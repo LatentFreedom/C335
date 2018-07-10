@@ -1,0 +1,4 @@
+Name: Nick Palumbo 
+Username: npalumbo
+
+For this lab we had to write a word count program and also our own printf. I had a hard time understanding what ‘<‘ meant when you called it on the command line. I tried to input it as a command line argument and use read file to read through the Haiku. I got the program to work using read file but did not read the homework right and finally noticed that I could use fetch instead of fgetc. After I figured that out I was able to complete the program correctly. For the next program I was easily able to call fetch for each of the 3 functions we needed to write. I had a hard time understanding how to get the decimal value to a hex value and could not figure out why the last print statement was printing out my hex number backwards. I tried using the print string function from printhex and that did not work.
